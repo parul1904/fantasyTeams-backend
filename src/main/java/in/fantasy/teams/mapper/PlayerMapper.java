@@ -1,0 +1,29 @@
+package in.fantasy.teams.mapper;
+
+import in.fantasy.teams.dto.PlayerDto;
+import in.fantasy.teams.entity.Player;
+
+public class PlayerMapper {
+
+    public static PlayerDto mapToPlayerDto(Player player) {
+        return new PlayerDto(
+                player.getPlayerId(),
+                player.getPlayerName(),
+                player.getNickName(),
+                player.getPlayerImgUrl(),
+                player.getRole(),
+                player.getCountry()
+        );
+    }
+
+    public static Player mapToPlayer(PlayerDto playerDto) {
+        return new Player(
+                playerDto.getPlayerId(),
+                playerDto.getPlayerName(),
+                playerDto.getNickName(),
+                playerDto.getPlayerImgUrl(),
+                playerDto.getRole(),
+                playerDto.getCountry()
+        );
+    }
+}
