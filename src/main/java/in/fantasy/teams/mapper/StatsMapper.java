@@ -6,8 +6,9 @@ import in.fantasy.teams.repository.MatchRepository;
 import in.fantasy.teams.repository.PlayerRepository;
 import in.fantasy.teams.repository.SeasonRepository;
 import in.fantasy.teams.repository.TeamRepository;
-import in.fantasy.teams.util.NewPointCalculator;
-import in.fantasy.teams.util.OldPointCalculator;
+import in.fantasy.teams.util.Dream11NewPointCalculator;
+import in.fantasy.teams.util.Dream11OldPointCalculator;
+import in.fantasy.teams.util.My11CirclePointCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -53,8 +54,9 @@ public class StatsMapper {
                 stats.getDirectRunout(),
                 stats.getInDirectRunout(),
                 stats.getIsImpactPlayer(),
-                stats.getTotalPointNewSystem(),
-                stats.getTotalPointOldSystem()
+                stats.getTotalPointDream11NewSystem(),
+                stats.getTotalPointDream11OldSystem(),
+                stats.getTotalPointMy11CircleSystem()
         );
     }
 
@@ -81,10 +83,12 @@ public class StatsMapper {
         stats.setDirectRunout(statsDto.getDirectRunout());
         stats.setInDirectRunout(statsDto.getInDirectRunout());
         stats.setIsImpactPlayer(statsDto.getIsImpactPlayer());
-        int totalPointsForNewSystem = NewPointCalculator.calculatePoints(statsDto, playerDetails.get().getRole());
-        stats.setTotalPointNewSystem(totalPointsForNewSystem);
-        int totalPointsForOldSystem = OldPointCalculator.calculatePoints(statsDto, playerDetails.get().getRole());
-        stats.setTotalPointOldSystem(totalPointsForOldSystem);
+        int totalPointsFoDream11NewSystem = Dream11NewPointCalculator.calculatePoints(statsDto, playerDetails.get().getRole());
+        stats.setTotalPointDream11NewSystem(totalPointsFoDream11NewSystem);
+        int totalPointsForDream11OldSystem = Dream11OldPointCalculator.calculatePoints(statsDto, playerDetails.get().getRole());
+        stats.setTotalPointDream11OldSystem(totalPointsForDream11OldSystem);
+        int totalPointsForMy11CircleSystem = My11CirclePointCalculator.calculatePoints(statsDto, playerDetails.get().getRole());
+        stats.setTotalPointMy11CircleSystem(totalPointsForMy11CircleSystem);
         return stats;
     }
 
@@ -136,8 +140,9 @@ public class StatsMapper {
             response.setDirectRunout((Integer) row[18]);
             response.setInDirectRunout((Integer) row[19]);
             response.setIsImpactPlayer((Boolean) row[20]);
-            response.setTotalPointNewSystem((Integer) row[21]);
-            response.setTotalPointOldSystem((Integer) row[22]);
+            response.setTotalPointDream11NewSystem((Integer) row[21]);
+            response.setTotalPointDream11OldSystem((Integer) row[22]);
+            response.setTotalPointMy11CircleSystem((Integer) row[23]);
             statsResponseList.add(response);
         }
         return statsResponseList;

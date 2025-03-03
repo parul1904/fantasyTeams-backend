@@ -2,6 +2,7 @@ package in.fantasy.teams.service;
 
 import in.fantasy.teams.dto.SquadDto;
 import in.fantasy.teams.dto.SquadResponse;
+import in.fantasy.teams.dto.SquadTeamResponse;
 import in.fantasy.teams.entity.Match;
 import in.fantasy.teams.entity.Squad;
 import in.fantasy.teams.exception.ResourceNotFoundException;
@@ -68,5 +69,11 @@ public class SquadServiceImpl implements SquadService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Squad does not exist with id: " + squadId));
         squadRepository.deleteById(squadId);
+    }
+
+    @Override
+    public List<SquadTeamResponse> getSquadIdBySeasonIdAndTeamId(Integer seasonId, Integer teamId) {
+        List<Object[]> squadDetails = squadRepository.findBySeasonIdAndTeamId(seasonId, teamId);
+       return squadMapper.mapToSquadTeamResponse(squadDetails);
     }
 }

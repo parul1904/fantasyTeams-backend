@@ -2,6 +2,7 @@ package in.fantasy.teams.mapper;
 
 import in.fantasy.teams.dto.SquadDto;
 import in.fantasy.teams.dto.SquadResponse;
+import in.fantasy.teams.dto.SquadTeamResponse;
 import in.fantasy.teams.entity.Player;
 import in.fantasy.teams.entity.Season;
 import in.fantasy.teams.entity.Squad;
@@ -13,7 +14,7 @@ import in.fantasy.teams.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class SquadMapper {
@@ -59,5 +60,35 @@ public class SquadMapper {
         Player player = playerRepository.findById(Long.valueOf(squadDto.getPlayerId().toString())).orElseThrow();
         squad.setPlayer(player);
         return squad;
+    }
+
+    public List<SquadTeamResponse> mapToSquadTeamResponse(List<Object[]> squadDetails) {
+        List<SquadTeamResponse> squadTeamResponses = new java.util.ArrayList<>();
+        Season season = seasonRepository.findById(Long.valueOf((Integer) squadDetails.get(0)[1])).orElseThrow();
+        Team team = teamRepository.findById(Long.valueOf((Integer) squadDetails.get(0)[2])).orElseThrow();
+        Map<String, Object> teamMap = new HashMap<>();
+        teamMap.put("teamName", team.getTeamName());
+        teamMap.put("teamLogo", team.getTeamLogoUrl());
+
+        List<Map<String, Object>> playerDetailsList = new ArrayList<>();
+
+        squadDetails.forEach(squadDetail -> {
+            Map<String, Object> playerDetailsMap = new HashMap<>();
+            Player player = playerRepository.findById(Long.valueOf((Integer) squadDetail[3])).orElseThrow();
+            playerDetailsMap.put("playerImage", player.getPlayerImgUrl());
+            playerDetailsMap.put("playerNickName", player.getNickName());
+            playerDetailsMap.put("playerName", player.getPlayerName());
+            playerDetailsMap.put("playerRole", player.getRole());
+            playerDetailsMap.put("playerCountry", player.getCountry());
+            playerDetailsList.add(playerDetailsMap);
+        });
+
+        SquadTeamResponse squadTeamResponse = new SquadTeamResponse();
+        squadTeamResponse.setSeasonYear(season.getYear());
+        squadTeamResponse.setTeamDetails(teamMap);
+        squadTeamResponse.setPlayerDetails(playerDetailsList);
+        squadTeamResponses.add(squadTeamResponse);
+
+        return squadTeamResponses;
     }
 }

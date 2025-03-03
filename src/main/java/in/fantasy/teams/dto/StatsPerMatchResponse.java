@@ -32,6 +32,7 @@ public class StatsPerMatchResponse {
     private Integer directRunout;
     private Integer inDirectRunout;
     private Boolean isImpactPlayer;
-    private Integer totalPointNewSystem;
-    private Integer totalPointOldSystem;
+    private Integer totalPointDream11NewSystem;
+    private Integer totalPointDream11OldSystem;
+    private Integer totalPointMy11CircleSystem;
 }
