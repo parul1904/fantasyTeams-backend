@@ -28,5 +28,9 @@ public class Player {
     @Column(name = "player_img_url")
     private String playerImgUrl;
     private String role;
+    @Column(name = "batting_style")
+    private String battingStyle;
+    @Column(name = "bowling_style")
+    private String bowlingStyle;
     private String country;
 }

@@ -12,6 +12,8 @@ public class PlayerMapper {
                 player.getNickName(),
                 player.getPlayerImgUrl(),
                 player.getRole(),
+                player.getBattingStyle(),
+                player.getBowlingStyle(),
                 player.getCountry()
         );
     }
@@ -23,6 +25,8 @@ public class PlayerMapper {
                 playerDto.getNickName(),
                 playerDto.getPlayerImgUrl(),
                 playerDto.getRole(),
+                playerDto.getBattingStyle(),
+                playerDto.getBowlingStyle(),
                 playerDto.getCountry()
         );
     }

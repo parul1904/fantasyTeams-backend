@@ -1,5 +1,6 @@
 package in.fantasy.teams.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,14 @@ public class MatchDto {
     private Integer venueId;
     private LocalDate matchDate;
     private String matchTime;
+    private String tossWonBy;
+    private String tossDecision;
+    private Integer firstInnRuns;
+    private Integer firstInnWickets;
+    private Integer secondInnRuns;
+    private Integer secondInnWickets;
+    private String wicketTakenByPacer;
+    private Integer wicketTakenBySpinner;
     private Integer winnerTeamId;
     private String winningMargin;
     private Integer playerOfTheMatch;

@@ -1,7 +1,8 @@
 package in.fantasy.teams.mapper;
 
-import in.fantasy.teams.dto.*;
+import in.fantasy.teams.dto.MatchBetweenResponse;
 import in.fantasy.teams.dto.MatchDto;
+import in.fantasy.teams.dto.MatchResponse;
 import in.fantasy.teams.entity.*;
 import in.fantasy.teams.repository.PlayerRepository;
 import in.fantasy.teams.repository.SeasonRepository;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -39,10 +39,18 @@ public class MatchMapper {
                 match.getVenue().getVenueId(),
                 match.getMatchDate(),
                 match.getMatchTime(),
-                null!=match.getWinnerTeam() ? match.getWinnerTeam().getTeamId() : null,
+                match.getTossWonBy(),
+                match.getTossDecision(),
+                match.getFirstInnRuns(),
+                match.getFirstInnWickets(),
+                match.getSecondInnRuns(),
+                match.getSecondInnWickets(),
+                match.getWicketTakenByPacer(),
+                match.getWicketTakenBySpinner(),
+                null != match.getWinnerTeam() ? match.getWinnerTeam().getTeamId() : null,
                 match.getWinningMargin(),
-                null!=match.getPlayerOfTheMatch() ? match.getPlayerOfTheMatch().getPlayerId() : null,
-                null!= match.getMvpId() ? match.getMvpId().getPlayerId() : null
+                null != match.getPlayerOfTheMatch() ? match.getPlayerOfTheMatch().getPlayerId() : null,
+                null != match.getMvpId() ? match.getMvpId().getPlayerId() : null
         );
     }
 
@@ -59,6 +67,14 @@ public class MatchMapper {
         match.setVenue(venue);
         match.setMatchDate(matchDto.getMatchDate());
         match.setMatchTime(matchDto.getMatchTime());
+        match.setTossWonBy(matchDto.getTossWonBy());
+        match.setTossDecision(matchDto.getTossDecision());
+        match.setFirstInnRuns(matchDto.getFirstInnRuns());
+        match.setFirstInnWickets(matchDto.getFirstInnWickets());
+        match.setSecondInnRuns(matchDto.getSecondInnRuns());
+        match.setSecondInnWickets(matchDto.getSecondInnWickets());
+        match.setWicketTakenByPacer(matchDto.getWicketTakenByPacer());
+        match.setWicketTakenBySpinner(matchDto.getWicketTakenBySpinner());
         if (null != matchDto.getWinnerTeamId()) {
             Team winnerTeam = teamRepository.findById(Long.valueOf(matchDto.getWinnerTeamId())).orElseThrow();
             match.setWinnerTeam(winnerTeam);
@@ -89,18 +105,26 @@ public class MatchMapper {
             response.setTeam2(team2.getTeamLogoUrl());
             Venue venue = venueRepository.findById(Long.valueOf(match.getVenueId())).orElseThrow();
             response.setVenueName(venue.getVenueName());
-            response.setMatchDate(match.getMatchDate());
-            response.setMatchTime(match.getMatchTime());
-            if(null!=match.getWinnerTeamId()) {
+            match.setMatchDate(match.getMatchDate());
+            match.setMatchTime(match.getMatchTime());
+            match.setTossWonBy(match.getTossWonBy());
+            match.setTossDecision(match.getTossDecision());
+            match.setFirstInnRuns(match.getFirstInnRuns());
+            match.setFirstInnWickets(match.getFirstInnWickets());
+            match.setSecondInnRuns(match.getSecondInnRuns());
+            match.setSecondInnWickets(match.getSecondInnWickets());
+            match.setWicketTakenByPacer(match.getWicketTakenByPacer());
+            match.setWicketTakenBySpinner(match.getWicketTakenBySpinner());
+            if (null != match.getWinnerTeamId()) {
                 Team winnerTeam = teamRepository.findById(Long.valueOf(match.getWinnerTeamId())).orElseThrow();
                 response.setWinnerTeam(winnerTeam.getTeamLogoUrl());
             }
             response.setWinningMargin(match.getWinningMargin());
-            if(null!=match.getPlayerOfTheMatch()) {
+            if (null != match.getPlayerOfTheMatch()) {
                 Player playerOfTheMatch = playerRepository.findById(Long.valueOf(match.getPlayerOfTheMatch())).orElseThrow();
                 response.setPlayerOfTheMatch(playerOfTheMatch.getNickName());
             }
-            if(null!=match.getMvp()) {
+            if (null != match.getMvp()) {
                 Player mvp = playerRepository.findById(Long.valueOf(match.getMvp())).orElseThrow();
                 response.setMvp(mvp.getNickName());
             }

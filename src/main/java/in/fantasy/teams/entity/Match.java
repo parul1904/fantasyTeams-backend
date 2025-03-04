@@ -43,6 +43,30 @@ public class Match {
     @Column(name="match_time", nullable = false)
     private String matchTime;
 
+    @Column(name="toss_won_by")
+    private String tossWonBy;
+
+    @Column(name="toss_decision")
+    private String tossDecision;
+
+    @Column(name = "first_inn_runs")
+    private Integer firstInnRuns;
+
+    @Column(name = "first_inn_wickets")
+    private Integer firstInnWickets;
+
+    @Column(name = "second_inn_runs")
+    private Integer secondInnRuns;
+
+    @Column(name = "second_inn_wickets")
+    private Integer secondInnWickets;
+
+    @Column(name="wicket_taken_by_pacer")
+    private String wicketTakenByPacer;
+
+    @Column(name = "wicket_taken_by_spinner")
+    private Integer wicketTakenBySpinner;
+
     @ManyToOne
     @JoinColumn(name = "winner_team_id", referencedColumnName = "team_id")
     private Team winnerTeam;
