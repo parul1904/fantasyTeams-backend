@@ -2,6 +2,7 @@ package in.fantasy.teams.service;
 
 import in.fantasy.teams.dto.SquadDto;
 import in.fantasy.teams.dto.SquadResponse;
+import in.fantasy.teams.dto.SquadTeamResponse;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface SquadService {
     SquadDto updateSquad(Long squadId, SquadDto squadDto);
 
     void deleteSquad(Long squadId);
+
+    SquadTeamResponse getSquadDetailsByTeam(Long teamId);
 }

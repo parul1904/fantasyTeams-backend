@@ -1,9 +1,6 @@
 package in.fantasy.teams.controller;
 
-import in.fantasy.teams.dto.ListStatsResponse;
-import in.fantasy.teams.dto.StatsDto;
-import in.fantasy.teams.dto.StatsPerMatchResponse;
-import in.fantasy.teams.dto.StatsResponse;
+import in.fantasy.teams.dto.*;
 import in.fantasy.teams.service.StatsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -52,5 +49,11 @@ public class StatsController {
     public ResponseEntity<Void> deleteStats(@PathVariable Integer id) {
         statsService.deleteStats(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/player/{playerId}")
+    public ResponseEntity<StatsPerPlayerResponse> getPlayerStatsByPlayerId(@PathVariable Integer playerId) {
+        StatsPerPlayerResponse stats = statsService.getPlayerStatsByPlayerId(playerId);
+        return ResponseEntity.ok(stats);
     }
 } 

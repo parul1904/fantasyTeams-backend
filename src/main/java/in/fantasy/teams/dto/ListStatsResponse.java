@@ -13,5 +13,6 @@ public class ListStatsResponse {
     private String team1;
     private String team2;
     private String matchDate;
-    private String player;
+    private String playerName;
+    private Integer dream11Points;
 }

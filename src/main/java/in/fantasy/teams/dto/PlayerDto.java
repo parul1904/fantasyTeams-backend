@@ -1,5 +1,6 @@
 package in.fantasy.teams.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,7 @@ public class PlayerDto {
     private String nickName;
     private String playerImgUrl;
     private String role;
+    private String battingStyle;
+    private String bowlingStyle;
     private String country;
 }

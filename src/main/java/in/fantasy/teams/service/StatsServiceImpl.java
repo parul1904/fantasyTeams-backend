@@ -3,6 +3,7 @@ package in.fantasy.teams.service;
 import in.fantasy.teams.dto.ListStatsResponse;
 import in.fantasy.teams.dto.StatsDto;
 import in.fantasy.teams.dto.StatsPerMatchResponse;
+import in.fantasy.teams.dto.StatsPerPlayerResponse;
 import in.fantasy.teams.entity.Stats;
 import in.fantasy.teams.mapper.StatsMapper;
 import in.fantasy.teams.repository.StatsRepository;
@@ -66,5 +67,12 @@ public class StatsServiceImpl implements StatsService {
             throw new RuntimeException("Stats not found with id: " + id);
         }
         statsRepository.deleteById(Long.valueOf(id));
+    }
+
+    @Override
+    public StatsPerPlayerResponse getPlayerStatsByPlayerId(Integer playerId) {
+        List<Object[]> statsDtos = statsRepository.getPlayerStatsByPlayerId(Long.valueOf(playerId)).stream()
+                .collect(Collectors.toList());
+            return statsMapper.mapToStatsPerPlayerResponseList(statsDtos);
     }
 } 

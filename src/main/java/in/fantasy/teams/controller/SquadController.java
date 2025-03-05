@@ -1,6 +1,7 @@
 package in.fantasy.teams.controller;
 import in.fantasy.teams.dto.SquadDto;
 import in.fantasy.teams.dto.SquadResponse;
+import in.fantasy.teams.dto.SquadTeamResponse;
 import in.fantasy.teams.service.SquadService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,4 +52,11 @@ public class SquadController {
         squadService.deleteSquad(squadId);
         return ResponseEntity.ok("Squad deleted successfully!");
     }
+
+    @GetMapping("/team/{teamId}")
+    public ResponseEntity<SquadTeamResponse> getSquadDetailsByTeam(@PathVariable("teamId") Long teamId){
+        SquadTeamResponse sqaudDetails= squadService.getSquadDetailsByTeam(teamId);
+        return ResponseEntity.ok(sqaudDetails);
+    }
+
 }

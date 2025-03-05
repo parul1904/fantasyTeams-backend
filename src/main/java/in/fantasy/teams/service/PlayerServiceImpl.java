@@ -51,6 +51,8 @@ public class PlayerServiceImpl implements PlayerService {
         existingPlayer.setNickName(playerDto.getNickName());
         existingPlayer.setPlayerImgUrl(playerDto.getPlayerImgUrl());
         existingPlayer.setRole(playerDto.getRole());
+        existingPlayer.setBattingStyle(playerDto.getBattingStyle());
+        existingPlayer.setBowlingStyle(playerDto.getBowlingStyle());
         existingPlayer.setCountry(playerDto.getCountry());
         playerRepository.save(existingPlayer);
         return PlayerMapper.mapToPlayerDto(existingPlayer);

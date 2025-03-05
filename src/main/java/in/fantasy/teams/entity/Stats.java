@@ -54,6 +54,9 @@ public class Stats {
     @Column(name = "other_dismissal")
     private Integer otherDismissal;
 
+    @Column(name = "runs_conceded")
+    private Integer runsConceded;
+
     private Integer dots;
 
     private Integer maiden;
@@ -72,11 +75,14 @@ public class Stats {
     @Column(name = "is_impact_player")
     private Boolean isImpactPlayer;
 
-    @Column(name = "total_point_new_system")
-    private Integer totalPointNewSystem;
+    @Column(name = "total_point_dream11_new_system")
+    private Integer totalPointDream11NewSystem;
 
-    @Column(name = "total_point_old_system")
-    private Integer totalPointOldSystem;
+    @Column(name = "total_point_dream11_old_system")
+    private Integer totalPointDream11OldSystem;
+
+    @Column(name = "total_point_my11_circle_system")
+    private Integer totalPointMy11CircleSystem;
 
 
 
