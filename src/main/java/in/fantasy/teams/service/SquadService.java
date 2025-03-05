@@ -17,5 +17,5 @@ public interface SquadService {
 
     void deleteSquad(Long squadId);
 
-    List<SquadTeamResponse> getSquadIdBySeasonIdAndTeamId(Integer seasonId, Integer teamId);
+    SquadTeamResponse getSquadDetailsByTeam(Long teamId);
 }

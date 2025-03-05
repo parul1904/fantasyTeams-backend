@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SquadRepository extends JpaRepository<Squad, Long> {
 
-    @Query(value = "SELECT * FROM fantasyteams.squads s WHERE s.season_id =:seasonId AND s.team_Id =:teamId", nativeQuery = true)
-    List<Object[]> findBySeasonIdAndTeamId(Integer seasonId, Integer teamId);
+    @Query(value = "SELECT * FROM fantasyteams.squads s WHERE s.season_id =2 AND s.team_Id =:teamId", nativeQuery = true)
+    List<Object[]> findSquadDetailsByTeam(Integer teamId);
 
 }

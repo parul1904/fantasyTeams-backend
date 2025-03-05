@@ -72,8 +72,8 @@ public class SquadServiceImpl implements SquadService {
     }
 
     @Override
-    public List<SquadTeamResponse> getSquadIdBySeasonIdAndTeamId(Integer seasonId, Integer teamId) {
-        List<Object[]> squadDetails = squadRepository.findBySeasonIdAndTeamId(seasonId, teamId);
+    public SquadTeamResponse getSquadDetailsByTeam(Long teamId) {
+        List<Object[]> squadDetails = squadRepository.findSquadDetailsByTeam(Math.toIntExact(teamId));
        return squadMapper.mapToSquadTeamResponse(squadDetails);
     }
 }

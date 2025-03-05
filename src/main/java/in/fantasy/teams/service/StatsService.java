@@ -13,4 +13,6 @@ public interface StatsService {
     List<StatsPerMatchResponse> getAllStatsByMatchId(Integer matchId);
     StatsDto updateStats(Integer id, StatsDto statsDto);
     void deleteStats(Integer id);
+
+    StatsPerPlayerResponse getPlayerStatsByPlayerId(Integer playerId);
 } 

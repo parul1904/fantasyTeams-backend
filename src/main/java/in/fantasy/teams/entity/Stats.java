@@ -54,6 +54,9 @@ public class Stats {
     @Column(name = "other_dismissal")
     private Integer otherDismissal;
 
+    @Column(name = "runs_conceded")
+    private Integer runsConceded;
+
     private Integer dots;
 
     private Integer maiden;

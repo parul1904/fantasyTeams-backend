@@ -11,7 +11,6 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SquadTeamResponse {
-    private Integer seasonYear;
     private Map<String, Object> teamDetails;
     private List<Map<String, Object>> playerDetails;
 

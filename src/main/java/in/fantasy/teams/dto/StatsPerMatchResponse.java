@@ -24,6 +24,7 @@ public class StatsPerMatchResponse {
     private Integer totalWickets;
     private Integer bowledLbw;
     private Integer otherDismissal;
+    private Integer runsConceded;
     private Integer dots;
     private Integer maiden;
     private Double economyRate;

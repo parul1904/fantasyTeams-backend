@@ -7,7 +7,7 @@ public class My11CirclePointCalculator {
     public static int calculatePoints(StatsDto statsDto, String role) {
         int points = 4;
 
-        points += calculateAnnouncedPlayerPoint(statsDto);
+       // points += calculateAnnouncedPlayerPoint(statsDto);
 
         // Batting Points
         points += calculateBattingPoints(statsDto, role);

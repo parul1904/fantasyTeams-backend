@@ -23,6 +23,7 @@ public class StatsDto {
     private Integer totalWickets;
     private Integer bowledLbw;
     private Integer otherDismissal;
+    private Integer runsConceded;
     private Integer dots;
     private Integer maiden;
     private Double economyRate;

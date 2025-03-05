@@ -62,19 +62,24 @@ public class SquadMapper {
         return squad;
     }
 
-    public List<SquadTeamResponse> mapToSquadTeamResponse(List<Object[]> squadDetails) {
-        List<SquadTeamResponse> squadTeamResponses = new java.util.ArrayList<>();
-        Season season = seasonRepository.findById(Long.valueOf((Integer) squadDetails.get(0)[1])).orElseThrow();
+    public SquadTeamResponse mapToSquadTeamResponse(List<Object[]> squadDetails) {
+        long seasonId = 2;
+        Season season = seasonRepository.findById(seasonId).orElseThrow();
         Team team = teamRepository.findById(Long.valueOf((Integer) squadDetails.get(0)[2])).orElseThrow();
         Map<String, Object> teamMap = new HashMap<>();
         teamMap.put("teamName", team.getTeamName());
         teamMap.put("teamLogo", team.getTeamLogoUrl());
+        teamMap.put("teamCaptain", team.getCaptain());
+        teamMap.put("teamCoach", team.getCoach());
+        teamMap.put("teamVenue", team.getVenue());
+        teamMap.put("titleWon", team.getTitleWon());
 
         List<Map<String, Object>> playerDetailsList = new ArrayList<>();
 
         squadDetails.forEach(squadDetail -> {
             Map<String, Object> playerDetailsMap = new HashMap<>();
             Player player = playerRepository.findById(Long.valueOf((Integer) squadDetail[3])).orElseThrow();
+            playerDetailsMap.put("playerId", player.getPlayerId());
             playerDetailsMap.put("playerImage", player.getPlayerImgUrl());
             playerDetailsMap.put("playerNickName", player.getNickName());
             playerDetailsMap.put("playerName", player.getPlayerName());
@@ -84,11 +89,8 @@ public class SquadMapper {
         });
 
         SquadTeamResponse squadTeamResponse = new SquadTeamResponse();
-        squadTeamResponse.setSeasonYear(season.getYear());
         squadTeamResponse.setTeamDetails(teamMap);
         squadTeamResponse.setPlayerDetails(playerDetailsList);
-        squadTeamResponses.add(squadTeamResponse);
-
-        return squadTeamResponses;
+        return squadTeamResponse;
     }
 }

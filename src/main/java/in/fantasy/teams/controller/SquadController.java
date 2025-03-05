@@ -53,10 +53,9 @@ public class SquadController {
         return ResponseEntity.ok("Squad deleted successfully!");
     }
 
-    @GetMapping("/season/{seasonId}/team/{teamId}")
-    public ResponseEntity<List<SquadTeamResponse>> getSquadById(@PathVariable("seasonId") Integer seasonId,
-                                                                @PathVariable("teamId") Integer teamId){
-        List<SquadTeamResponse> sqaudDetails= squadService.getSquadIdBySeasonIdAndTeamId(seasonId, teamId);
+    @GetMapping("/team/{teamId}")
+    public ResponseEntity<SquadTeamResponse> getSquadDetailsByTeam(@PathVariable("teamId") Long teamId){
+        SquadTeamResponse sqaudDetails= squadService.getSquadDetailsByTeam(teamId);
         return ResponseEntity.ok(sqaudDetails);
     }
 
