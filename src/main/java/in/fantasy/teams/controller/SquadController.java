@@ -1,7 +1,7 @@
 package in.fantasy.teams.controller;
 import in.fantasy.teams.dto.SquadDto;
-import in.fantasy.teams.dto.SquadResponse;
-import in.fantasy.teams.dto.SquadTeamResponse;
+import in.fantasy.teams.response.SquadResponse;
+import in.fantasy.teams.response.SquadTeamResponse;
 import in.fantasy.teams.service.SquadService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

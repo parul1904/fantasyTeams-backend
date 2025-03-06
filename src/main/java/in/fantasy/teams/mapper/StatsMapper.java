@@ -1,6 +1,9 @@
 package in.fantasy.teams.mapper;
 
 import in.fantasy.teams.dto.*;
+import in.fantasy.teams.response.ListStatsResponse;
+import in.fantasy.teams.response.StatsPerMatchResponse;
+import in.fantasy.teams.response.StatsPerPlayerResponse;
 import in.fantasy.teams.entity.*;
 import in.fantasy.teams.repository.MatchRepository;
 import in.fantasy.teams.repository.PlayerRepository;
@@ -180,104 +183,113 @@ public class StatsMapper {
     }
 
     public StatsPerPlayerResponse aggregateStats(List<StatsPerPlayerResponse> statsList) {
-    StatsPerPlayerResponse aggregatedResponse = new StatsPerPlayerResponse();
-    int totalRunsScored = 0;
-    int totalBallFaced = 0;
-    int totalFours = 0;
-    int totalSixes = 0;
-    double totalStrikeRate = 0.0;
-    int totalCatchTaken = 0;
-    int totalStumping = 0;
-    int totalWickets = 0;
-    int totalOvers = 0;
-    int totalRunsConceded = 0;
-    double totalEconomyRate = 0.0;
-    int battingInnCounter = 0;
-    int bowlingInnCounter = 0;
-    int halfCenturyCounter = 0;
-    int centuryCounter = 0;
-    int bestScore = 0;
-    int bestBowlingFigureWicket = 0;
-    int bestBowlingFigureRun = 0;
-    int threeWicketHaulsCounter = 0;
+        StatsPerPlayerResponse aggregatedResponse = new StatsPerPlayerResponse();
+        int totalRunsScored = 0;
+        int totalBallFaced = 0;
+        int totalFours = 0;
+        int totalSixes = 0;
+        double totalStrikeRate = 0.0;
+        int totalCatchTaken = 0;
+        int totalStumping = 0;
+        int totalWickets = 0;
+        int totalOvers = 0;
+        int totalRunsConceded = 0;
+        double totalEconomyRate = 0.0;
+        int battingInnCounter = 0;
+        int bowlingInnCounter = 0;
+        int halfCenturyCounter = 0;
+        int centuryCounter = 0;
+        int bestScore = 0;
+        int bestBowlingFigureWicket = 0;
+        int bestBowlingFigureRun = 0;
+        int threeWicketHaulsCounter = 0;
 
-    for (StatsPerPlayerResponse stats : statsList) {
-        totalRunsScored += null!= stats.getRunsScored() ? stats.getRunsScored() : 0;
-        if (null != stats.getRunsScored() && (stats.getRunsScored() > bestScore)) {
-            bestScore = stats.getRunsScored();
-        }
-        if (null != stats.getRunsScored() && (stats.getRunsScored() >= 50 && stats.getRunsScored() < 100)) {
-            halfCenturyCounter++;
-        } else if (null != stats.getRunsScored() && (stats.getRunsScored() >= 100)) {
-            centuryCounter++;
-        }
-        totalBallFaced += null!= stats.getBallFaced() ? stats.getBallFaced() : 0;
-        if (null != stats.getBallFaced() && (stats.getBallFaced() > 1)) {
-            battingInnCounter++;
-        }
-        totalFours += null!=stats.getFours() ? stats.getFours() : 0;
-        totalSixes += null!= stats.getSixes() ? stats.getSixes() : 0;
-        totalStrikeRate += null!=stats.getStrikeRate() ? stats.getStrikeRate() : 0;
-        totalCatchTaken += null!=stats.getCatchTaken() ? stats.getCatchTaken() : 0;
-        totalStumping += null!=stats.getStumping() ? stats.getStumping() : 0;
-        totalWickets += stats.getTotalWickets() != null ? stats.getTotalWickets() : 0;
-        totalOvers += stats.getOvers() != null ? oversToBalls(stats.getOvers()) : 0;
-        if (null != stats.getOvers() && stats.getOvers() > 0.1) {
-            bowlingInnCounter++;
-        }
-        totalRunsConceded += stats.getRunsConceded() != null ? stats.getRunsConceded() : 0;
-        totalEconomyRate += stats.getEconomyRate() != null ? stats.getEconomyRate() : 0.0;
+        for (StatsPerPlayerResponse stats : statsList) {
+            totalRunsScored += null!= stats.getRunsScored() ? stats.getRunsScored() : 0;
+            if (null != stats.getRunsScored() && (stats.getRunsScored() > bestScore)) {
+                bestScore = stats.getRunsScored();
+            }
+            if (null != stats.getRunsScored() && (stats.getRunsScored() >= 50 && stats.getRunsScored() < 100)) {
+                halfCenturyCounter++;
+            } else if (null != stats.getRunsScored() && (stats.getRunsScored() >= 100)) {
+                centuryCounter++;
+            }
+            totalBallFaced += null!= stats.getBallFaced() ? stats.getBallFaced() : 0;
+            if (null != stats.getBallFaced() && (stats.getBallFaced() > 1)) {
+                battingInnCounter++;
+            }
+            totalFours += null!=stats.getFours() ? stats.getFours() : 0;
+            totalSixes += null!= stats.getSixes() ? stats.getSixes() : 0;
+            totalStrikeRate += null!=stats.getStrikeRate() ? stats.getStrikeRate() : 0;
+            totalCatchTaken += null!=stats.getCatchTaken() ? stats.getCatchTaken() : 0;
+            totalStumping += null!=stats.getStumping() ? stats.getStumping() : 0;
+            totalWickets += stats.getTotalWickets() != null ? stats.getTotalWickets() : 0;
+            totalOvers += stats.getOvers() != null ? oversToBalls(stats.getOvers()) : 0;
+            if (null != stats.getOvers() && stats.getOvers() > 0.1) {
+                bowlingInnCounter++;
+            }
+            totalRunsConceded += stats.getRunsConceded() != null ? stats.getRunsConceded() : 0;
+            totalEconomyRate += stats.getEconomyRate() != null ? stats.getEconomyRate() : 0.0;
 
-        //find best bowling figure
-       //TODO
+            //find best bowling figure
+            //TODO
 
-        if(null!=stats.getTotalWickets() && stats.getTotalWickets() >= 3){
-            threeWicketHaulsCounter++;
+            if(null!=stats.getTotalWickets() && stats.getTotalWickets() >= 3){
+                threeWicketHaulsCounter++;
+            }
         }
-    }
 
-    // Set aggregated values
-    aggregatedResponse.setMatchesPlayed(statsList.size());
-    aggregatedResponse.setBattingInnsPlayed(battingInnCounter);
-    aggregatedResponse.setSeasonYear(statsList.get(0).getSeasonYear());
-    aggregatedResponse.setPlayer(statsList.get(0).getPlayer());
-    aggregatedResponse.setPlayerImgUrl(statsList.get(0).getPlayerImgUrl());
-    aggregatedResponse.setPlayerRole(statsList.get(0).getPlayerRole());
-    aggregatedResponse.setPlayerCountry(statsList.get(0).getPlayerCountry());
-    aggregatedResponse.setRunsScored(totalRunsScored);
-    aggregatedResponse.setBallFaced(totalBallFaced);
-    aggregatedResponse.setFours(totalFours);
-    aggregatedResponse.setSixes(totalSixes);
-    aggregatedResponse.setStrikeRate(totalStrikeRate / statsList.size());
-    if(battingInnCounter > 0) {
-        aggregatedResponse.setBattingAverage((double) (totalRunsScored / battingInnCounter));
-    } else {
-        aggregatedResponse.setBattingAverage((double) totalRunsScored);
-    }
-    aggregatedResponse.setHalfCentury(halfCenturyCounter);
-    aggregatedResponse.setCentury(centuryCounter);
-    aggregatedResponse.setBestScore(bestScore);
-    aggregatedResponse.setCatchTaken(totalCatchTaken);
-    aggregatedResponse.setStumping(totalStumping);
-    aggregatedResponse.setBowlingInnsPlayed(bowlingInnCounter);
-    aggregatedResponse.setTotalWickets(totalWickets);
-    aggregatedResponse.setOvers(ballsToOvers(totalOvers));
-    aggregatedResponse.setRunsConceded(totalRunsConceded);
-    if(totalWickets > 0){
-        aggregatedResponse.setBowlingAverage((double) (totalRunsConceded / totalWickets));
-    } else {
-        aggregatedResponse.setBowlingAverage((double) totalRunsConceded);
-    }
+        // Set aggregated values
+        aggregatedResponse.setMatchesPlayed(!statsList.isEmpty() ? statsList.size() : 0);
+        aggregatedResponse.setBattingInnsPlayed(battingInnCounter);
+        aggregatedResponse.setSeasonYear(!statsList.isEmpty() ? statsList.get(0).getSeasonYear() : 0);
+        aggregatedResponse.setPlayer(!statsList.isEmpty() ? statsList.get(0).getPlayer() : null);
+        aggregatedResponse.setPlayerImgUrl(!statsList.isEmpty() ? statsList.get(0).getPlayerImgUrl() : null);
+        aggregatedResponse.setPlayerRole(!statsList.isEmpty() ? statsList.get(0).getPlayerRole() : null);
+        aggregatedResponse.setPlayerCountry(!statsList.isEmpty() ? statsList.get(0).getPlayerCountry() : null);
+        aggregatedResponse.setRunsScored(totalRunsScored);
+        aggregatedResponse.setBallFaced(totalBallFaced);
+        aggregatedResponse.setFours(totalFours);
+        aggregatedResponse.setSixes(totalSixes);
+        if(!statsList.isEmpty()) {
+            aggregatedResponse.setStrikeRate(totalStrikeRate / statsList.size());
+        } else {
+            aggregatedResponse.setStrikeRate(0.0);
+        }
 
-    aggregatedResponse.setEconomyRate(totalEconomyRate / statsList.size());
+        if(battingInnCounter > 0) {
+            aggregatedResponse.setBattingAverage((double) (totalRunsScored / battingInnCounter));
+        } else {
+            aggregatedResponse.setBattingAverage((double) totalRunsScored);
+        }
+        aggregatedResponse.setHalfCentury(halfCenturyCounter);
+        aggregatedResponse.setCentury(centuryCounter);
+        aggregatedResponse.setBestScore(bestScore);
+        aggregatedResponse.setCatchTaken(totalCatchTaken);
+        aggregatedResponse.setStumping(totalStumping);
+        aggregatedResponse.setBowlingInnsPlayed(bowlingInnCounter);
+        aggregatedResponse.setTotalWickets(totalWickets);
+        aggregatedResponse.setOvers(ballsToOvers(totalOvers));
+        aggregatedResponse.setRunsConceded(totalRunsConceded);
+        if(totalWickets > 0){
+            aggregatedResponse.setBowlingAverage((double) (totalRunsConceded / totalWickets));
+        } else {
+            aggregatedResponse.setBowlingAverage((double) totalRunsConceded);
+        }
+
+        if(!statsList.isEmpty()) {
+            aggregatedResponse.setEconomyRate(totalEconomyRate / statsList.size());
+        } else {
+            aggregatedResponse.setEconomyRate(0.0);
+        }
         if(totalWickets > 0) {
             aggregatedResponse.setBowlingStrikeRate(ballsToOvers(totalOvers) / totalWickets);
         } else {
             aggregatedResponse.setBowlingStrikeRate(ballsToOvers(totalOvers));
         }
         aggregatedResponse.setThreeWicketHauls(threeWicketHaulsCounter);
-    return aggregatedResponse;
-}
+        return aggregatedResponse;
+    }
 
     public static int oversToBalls(double overs) {
         if (overs < 0) {

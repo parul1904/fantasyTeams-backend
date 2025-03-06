@@ -1,8 +1,8 @@
 package in.fantasy.teams.mapper;
 
 import in.fantasy.teams.dto.SquadDto;
-import in.fantasy.teams.dto.SquadResponse;
-import in.fantasy.teams.dto.SquadTeamResponse;
+import in.fantasy.teams.response.SquadResponse;
+import in.fantasy.teams.response.SquadTeamResponse;
 import in.fantasy.teams.entity.Player;
 import in.fantasy.teams.entity.Season;
 import in.fantasy.teams.entity.Squad;
@@ -10,7 +10,6 @@ import in.fantasy.teams.entity.Team;
 import in.fantasy.teams.repository.PlayerRepository;
 import in.fantasy.teams.repository.SeasonRepository;
 import in.fantasy.teams.repository.TeamRepository;
-import in.fantasy.teams.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

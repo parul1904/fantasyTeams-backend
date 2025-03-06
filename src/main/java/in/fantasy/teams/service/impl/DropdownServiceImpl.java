@@ -1,4 +1,4 @@
-package in.fantasy.teams.service;
+package in.fantasy.teams.service.impl;
 
 import in.fantasy.teams.dto.Dropdown;
 import in.fantasy.teams.repository.*;

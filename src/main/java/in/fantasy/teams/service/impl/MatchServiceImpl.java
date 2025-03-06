@@ -1,11 +1,12 @@
-package in.fantasy.teams.service;
+package in.fantasy.teams.service.impl;
 
-import in.fantasy.teams.dto.MatchBetweenResponse;
+import in.fantasy.teams.response.MatchBetweenResponse;
 import in.fantasy.teams.dto.MatchDto;
-import in.fantasy.teams.dto.MatchResponse;
+import in.fantasy.teams.response.MatchResponse;
 import in.fantasy.teams.entity.Match;
 import in.fantasy.teams.mapper.MatchMapper;
 import in.fantasy.teams.repository.MatchRepository;
+import in.fantasy.teams.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

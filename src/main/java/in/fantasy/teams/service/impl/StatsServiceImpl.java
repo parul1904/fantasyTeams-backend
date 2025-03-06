@@ -1,12 +1,13 @@
-package in.fantasy.teams.service;
+package in.fantasy.teams.service.impl;
 
-import in.fantasy.teams.dto.ListStatsResponse;
+import in.fantasy.teams.response.ListStatsResponse;
 import in.fantasy.teams.dto.StatsDto;
-import in.fantasy.teams.dto.StatsPerMatchResponse;
-import in.fantasy.teams.dto.StatsPerPlayerResponse;
+import in.fantasy.teams.response.StatsPerMatchResponse;
+import in.fantasy.teams.response.StatsPerPlayerResponse;
 import in.fantasy.teams.entity.Stats;
 import in.fantasy.teams.mapper.StatsMapper;
 import in.fantasy.teams.repository.StatsRepository;
+import in.fantasy.teams.service.StatsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

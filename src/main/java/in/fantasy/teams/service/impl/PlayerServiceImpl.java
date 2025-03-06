@@ -1,10 +1,11 @@
-package in.fantasy.teams.service;
+package in.fantasy.teams.service.impl;
 
 import in.fantasy.teams.dto.PlayerDto;
 import in.fantasy.teams.entity.Player;
 import in.fantasy.teams.exception.ResourceNotFoundException;
 import in.fantasy.teams.mapper.PlayerMapper;
 import in.fantasy.teams.repository.PlayerRepository;
+import in.fantasy.teams.service.PlayerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,8 @@
-package in.fantasy.teams.dto;
+package in.fantasy.teams.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
