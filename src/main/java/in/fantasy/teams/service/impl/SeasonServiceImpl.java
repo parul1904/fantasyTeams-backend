@@ -1,10 +1,11 @@
-package in.fantasy.teams.service;
+package in.fantasy.teams.service.impl;
 
 import in.fantasy.teams.dto.SeasonDto;
 import in.fantasy.teams.entity.Season;
 import in.fantasy.teams.exception.ResourceNotFoundException;
 import in.fantasy.teams.mapper.SeasonMapper;
 import in.fantasy.teams.repository.SeasonRepository;
+import in.fantasy.teams.service.SeasonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

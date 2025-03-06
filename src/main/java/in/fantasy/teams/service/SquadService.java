@@ -1,8 +1,8 @@
 package in.fantasy.teams.service;
 
 import in.fantasy.teams.dto.SquadDto;
-import in.fantasy.teams.dto.SquadResponse;
-import in.fantasy.teams.dto.SquadTeamResponse;
+import in.fantasy.teams.response.SquadResponse;
+import in.fantasy.teams.response.SquadTeamResponse;
 
 import java.util.List;
 

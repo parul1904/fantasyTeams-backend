@@ -1,6 +1,9 @@
 package in.fantasy.teams.service;
 
 import in.fantasy.teams.dto.*;
+import in.fantasy.teams.response.ListStatsResponse;
+import in.fantasy.teams.response.StatsPerMatchResponse;
+import in.fantasy.teams.response.StatsPerPlayerResponse;
 
 import java.util.List;
 

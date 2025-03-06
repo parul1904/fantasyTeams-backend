@@ -1,8 +1,8 @@
 package in.fantasy.teams.mapper;
 
-import in.fantasy.teams.dto.MatchBetweenResponse;
+import in.fantasy.teams.response.MatchBetweenResponse;
 import in.fantasy.teams.dto.MatchDto;
-import in.fantasy.teams.dto.MatchResponse;
+import in.fantasy.teams.response.MatchResponse;
 import in.fantasy.teams.entity.*;
 import in.fantasy.teams.repository.PlayerRepository;
 import in.fantasy.teams.repository.SeasonRepository;

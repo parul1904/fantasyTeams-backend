@@ -1,7 +1,7 @@
 package in.fantasy.teams.controller;
 
 import in.fantasy.teams.dto.Dropdown;
-import in.fantasy.teams.service.DropdownServiceImpl;
+import in.fantasy.teams.service.impl.DropdownServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

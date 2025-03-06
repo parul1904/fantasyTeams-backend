@@ -22,4 +22,14 @@ public interface StatsRepository extends JpaRepository<Stats, Long> {
             "\t\tJOIN players p ON ms.player_id = p.player_id " +
             "WHERE ms.player_id = :playerId", nativeQuery = true)
     List<Object[]> getPlayerStatsByPlayerId(@Param("playerId") Long playerId);
+
+    @Query(value= """
+            SELECT p.player_id, p.player_img_url, p.nick_name, p.role, t1.team_logo_url AS team1_id,\s
+            t2.team_logo_url AS team2_id, ms.total_point_dream11_old_system, ms.total_point_my11_circle_system,\s
+            ms.total_point_dream11_new_system FROM match_stats ms
+            JOIN players p ON ms.player_id = p.player_id JOIN matches m ON ms.match_no = m.match_id
+            JOIN teams t1 ON m.team1_id = t1.team_id  JOIN teams t2 ON m.team2_id = t2.team_id
+            WHERE ms.match_no = :matchNo order by ms.total_point_dream11_old_system desc limit 14
+            """, nativeQuery = true)
+    List<Object[]> getDreamTeamByMatchNo(@Param("matchNo") Long matchNo);
 }

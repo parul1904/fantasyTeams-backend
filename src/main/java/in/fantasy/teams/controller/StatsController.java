@@ -1,6 +1,9 @@
 package in.fantasy.teams.controller;
 
 import in.fantasy.teams.dto.*;
+import in.fantasy.teams.response.ListStatsResponse;
+import in.fantasy.teams.response.StatsPerMatchResponse;
+import in.fantasy.teams.response.StatsPerPlayerResponse;
 import in.fantasy.teams.service.StatsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

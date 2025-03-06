@@ -1,4 +1,4 @@
-package in.fantasy.teams.dto;
+package in.fantasy.teams.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

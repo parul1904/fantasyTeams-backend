@@ -1,13 +1,13 @@
-package in.fantasy.teams.service;
+package in.fantasy.teams.service.impl;
 
 import in.fantasy.teams.dto.SquadDto;
-import in.fantasy.teams.dto.SquadResponse;
-import in.fantasy.teams.dto.SquadTeamResponse;
-import in.fantasy.teams.entity.Match;
+import in.fantasy.teams.response.SquadResponse;
+import in.fantasy.teams.response.SquadTeamResponse;
 import in.fantasy.teams.entity.Squad;
 import in.fantasy.teams.exception.ResourceNotFoundException;
 import in.fantasy.teams.mapper.SquadMapper;
 import in.fantasy.teams.repository.SquadRepository;
+import in.fantasy.teams.service.SquadService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

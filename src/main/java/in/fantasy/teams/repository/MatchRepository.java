@@ -1,6 +1,5 @@
 package in.fantasy.teams.repository;
 
-import in.fantasy.teams.dto.MatchBetweenResponse;
 import in.fantasy.teams.entity.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

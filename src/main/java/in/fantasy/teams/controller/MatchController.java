@@ -1,9 +1,8 @@
 package in.fantasy.teams.controller;
 
-import in.fantasy.teams.dto.MatchBetweenResponse;
+import in.fantasy.teams.response.MatchBetweenResponse;
 import in.fantasy.teams.dto.MatchDto;
-import in.fantasy.teams.dto.MatchResponse;
-import in.fantasy.teams.dto.PlayerDto;
+import in.fantasy.teams.response.MatchResponse;
 import in.fantasy.teams.service.MatchService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
